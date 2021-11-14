@@ -80,7 +80,7 @@ const Cart = () => {
   //get context
   let userContext = useContext(UserContext)
 
-  //loadFataFromDatabase and fetch data from orders array
+  //loadDataFromDatabase and fetch data from orders array
   let loadDataFromDatabase = useCallback(async () => {
     let ordersResponse =
 
