@@ -4,6 +4,7 @@ import { UserContext } from './context/UserContext';
 import { BrandsService, CategoriesService } from "./Service";
 import Product from './components/Product';
 import { Search } from "@material-ui/icons";
+import data from '../src/data/ecommerce-db.json'
 import { mobile } from "./responsive";
 
 const Container = styled.div`
@@ -93,63 +94,99 @@ const Input = styled.input`
 
 
 
+
+
 const Store = () => {
     //state
-    let [brands, setBrands] = useState([]);
-    let [categories, setCategories] = useState([]);
-    let [products, setProducts] = useState([]);
-    let [productsToShow, setProductsToShow] = useState([]);
-    let [search, setSearch] = useState('');
+    const [brands, setBrands] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [productsToShow, setProductsToShow] = useState([]);
+    const [search, setSearch] = useState('');
 
     //get user context
-    let userContext = useContext(UserContext);
+    const userContext = useContext(UserContext);
 
     useEffect(() => {
+
+
         //get brands from db
-        (async () => {
-            //get brands from db
-            let brandsResponse = await BrandsService.fetchBrands();
-            let brandsResponseBody = await brandsResponse.json();
-            brandsResponseBody.forEach((brand) => {
-                brand.isChecked = true;
-            });
-            setBrands(brandsResponseBody);
 
-            //get categories from db
-            let categoriesResponse = await CategoriesService.fetchCategories();
-            let categoriesResponseBody = await categoriesResponse.json();
-            categoriesResponseBody.forEach((category) => {
-                category.isChecked = true;
-            });
-            setCategories(categoriesResponseBody);
+        //get brands from db
 
-            //get products from db
-            let productsResponse = await fetch(`http://localhost:5000/products?productName_like=${search}`,
-                { method: "GET" }
+        const brandsArray = data.brands;
+
+        brandsArray.forEach((brand) => {
+            console.log(brand)
+            brand.isChecked = true;
+        })
+
+        // let brandsResponse = await BrandsService.fetchBrands();
+        // let brandsResponseBody = await brandsResponse.json();
+
+
+        // brandsResponseBody.forEach((brand) => {
+
+        //     brand.isChecked = true;
+        // });
+
+        setBrands(brandsArray);
+
+
+        //get categories from db
+        // let categoriesResponse = await CategoriesService.fetchCategories();
+        // let categoriesResponseBody = await categoriesResponse.json();
+
+        const categoriesArray = data.categories;
+
+        categories.forEach((category) => {
+            console.log(category)
+            category.isChecked = true;
+        })
+
+        // categoriesResponseBody.forEach((category) => {
+        //     category.isChecked = true;
+        // });
+        setCategories(categoriesArray);
+
+        //get products from db
+
+        const productsArray = data.products;
+
+
+        const newList = productsArray.filter((prod) =>
+            prod.productName.toLowerCase().includes(search.toLowerCase())
+        )
+
+        console.log(newList)
+
+
+        // let productsResponse = await fetch(`http://localhost:5000/products?productName_like=${search}`,
+        //     { method: "GET" }
+        // );
+        // let productsResponseBody = await productsResponse.json();
+        // if (productsResponse.ok) {
+        newList.forEach((product) => {
+            //set brand
+            product.brand = BrandsService.getBrandByBrandId(
+                brandsArray,
+                product.brandId
             );
-            let productsResponseBody = await productsResponse.json();
-            if (productsResponse.ok) {
-                productsResponseBody.forEach((product) => {
-                    //set brand
-                    product.brand = BrandsService.getBrandByBrandId(
-                        brandsResponseBody,
-                        product.brandId
-                    );
 
-                    //set category
-                    product.category = CategoriesService.getCategoryByCategoryId(
-                        categoriesResponseBody,
-                        product.categoryId
-                    );
+            //set category
+            product.category = CategoriesService.getCategoryByCategoryId(
+                categoriesArray,
+                product.categoryId
+            );
 
-                    product.isOrdered = false;
-                });
+            product.isOrdered = false;
+        });
 
-                setProducts(productsResponseBody);
-                setProductsToShow(productsResponseBody);
-                document.title = "Store - eCommerce";
-            }
-        })();
+        setProducts(newList);
+        setProductsToShow(newList);
+        document.title = "Store - eCommerce";
+        // }
+
     }, [search])
 
     //updateBrandIsChecked
@@ -282,6 +319,7 @@ const Store = () => {
 };
 
 export default Store;
+
 
 
 
