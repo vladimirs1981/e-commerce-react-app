@@ -1,6 +1,5 @@
 import { Badge } from "@material-ui/core";
 import { ShoppingCartOutlined, Person } from "@material-ui/icons";
-import React, { useContext, useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
 import { mobile } from "../responsive";

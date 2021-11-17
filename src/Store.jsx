@@ -92,10 +92,6 @@ const Input = styled.input`
  
 `;
 
-
-
-
-
 const Store = () => {
     //state
     const [brands, setBrands] = useState([]);
@@ -108,7 +104,6 @@ const Store = () => {
     const userContext = useContext(UserContext);
 
     useEffect(() => {
-
 
         const brandsArray = data.brands;
 
@@ -145,6 +140,7 @@ const Store = () => {
 
         setProducts(newList);
         setProductsToShow(newList);
+
         document.title = "Store - eCommerce";
 
     }, [search])
@@ -186,30 +182,31 @@ const Store = () => {
             })
         )
     }
-
+    //let modalArray = [];
     //When the user clicks on Add to Cart function
-    let onAddToCartClick = (prod) => {
+    const onAddToCartClick = (prod) => {
 
-        let newOrder = {
-            //userId: userContext.user.currentUserId,
-            productId: prod.id,
-            quantity: 1,
-            isPaymentCompleted: false,
-        };
+        // let newOrder = {
+        //     productId: prod.id,
+        //     quantity: 1,
+        //     isPaymentCompleted: false,
+        // };
 
-        //     let orderResponse = await fetch(`http://localhost:5000/orders`, {
-        //         method: "POST",
-        //         body: JSON.stringify(newOrder),
-        //         headers: { "Content-Type": "application/json" },
-        //     });
 
-        localStorage.setItem('order', JSON.stringify(newOrder));
+        let order = JSON.stringify(prod);
+
+
+        // modalArray.push(order)
+
+        // console.log(modalArray.length);
+
+        localStorage.setItem('order', JSON.stringify(prod));
         let prods = products.map((p) => {
             if (p.id === prod.id) p.isOrdered = true;
             return p;
 
         });
-        // console.log(order);
+
         setProducts(prods);
         updateProductsToShow();
 

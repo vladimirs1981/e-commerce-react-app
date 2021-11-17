@@ -58,15 +58,6 @@ const PreviousOrders = styled.div`
   border-top: 1px solid black;
 `;
 
-
-const Refresh = styled.button`
-  width: 20%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
-`;
-
 const TopText = styled.div`
   display: flex;
   align-items: center;
@@ -81,36 +72,50 @@ const Cart = () => {
   //get context
   const userContext = useContext(UserContext)
 
+
+  let newData = localStorage.getItem('order');
+
+  let jsonData = JSON.parse(newData);
+
+  console.log(jsonData);
+
   //loadDataFromDatabase and fetch data from orders array
+  let loadData = useCallback(
+    () => {
+      const ordersArray = data.orders;
+
+      const products = data.products;
 
 
 
 
-  //     //read orders data
-  // ordersArray.forEach((order) => {
-  //   order.product = ProductsService.getProductsByProductId(products, order.productId);
-  // });
-  //setOrders(ordersArray);
-  //console.log(orders);
+      //read orders data
+      ordersArray.forEach((order) => {
+        order.product = ProductsService.getProductsByProductId(products, order.productId);
+      });
+      setOrders(ordersArray);
+
+    },
+    [],
+  )
+
 
 
 
 
   useEffect(() => {
-    let newData = localStorage.getItem('order');
-
-    let jsonData = JSON.parse(newData)
 
 
 
-    const product = data.products[jsonData.productId]
+
 
     // let ordersResponse =
-    setCartArray(product)
-    document.title = "Cart - eCommerce";
 
+    document.title = "Cart - eCommerce";
+    loadData()
   }
     , []);
+
 
   // //buy now click
   let onBuyNowClick = useCallback(
@@ -173,7 +178,6 @@ const Cart = () => {
           <Link to="/">
             <TopButton>CONTINUE SHOPPING</TopButton>
           </Link>
-          <Refresh  ><i className="fa fa-refresh"></i> Refresh</Refresh>
         </Top>
         <TopText>
           <Title>Previous Orders{""}: {OrdersService.getPreviousOrders(orders).length}</Title>
@@ -202,26 +206,26 @@ const Cart = () => {
           </PreviousOrders>
           <Bottom>
 
-            {OrdersService.getCart(orders).length === 0 ? (
+            {/* {OrdersService.getCart(orders).length === 0 ? (
               <div>No Products In Your Cart</div>
-            ) : ('')}
+            ) : ('')} */}
 
-            {OrdersService.getCart(orders).map((ord) => {
-              return <Order
-                key={ord.id}
-                productId={ord.productId}
-                orderId={ord.id}
-                userId={ord.userId}
-                isPaymentCompleted={ord.isPaymentCompleted}
-                quantity={ord.quantity}
-                productName={ord.product.productName}
-                price={ord.product.price}
-                image={ord.product.image}
-                onBuyNowClick={onBuyNowClick}
-                onDeleteClick={onDeleteClick}
+            {/* {OrdersService.getCart(orders).map((ord) => { */}
+            <Order
+              key={jsonData.id}
+              productId={jsonData.id}
+              orderId={jsonData.id}
+              // userId={ord.userId}
+              // isPaymentCompleted={ord.isPaymentCompleted}
+              // quantity={ord.quantity}
+              productName={jsonData.productName}
+              price={jsonData.price}
+              image={jsonData.image}
+              onBuyNowClick={onBuyNowClick}
+              onDeleteClick={onDeleteClick}
 
-              />
-            })}
+            />
+            {/* })} */}
 
           </Bottom>
         </CartDiv>

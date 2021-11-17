@@ -10,13 +10,6 @@ import Product from './Product'
 
 const App = () => {
 
-    // let [user, setUser] = useState({
-    //     isLoggedIn: false,
-    //     currentUserId: null,
-    //     currentUserName: null,
-    // });
-
-    //value={{ user, setUser }}
 
     return (
         <UserContext.Provider  >

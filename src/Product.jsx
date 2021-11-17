@@ -57,7 +57,7 @@ const Product = () => {
 
   useEffect(() => {
 
-    const product = data.products[productId];
+    const product = data.products[productId - 1];
     setProduct(product)
 
 
