@@ -7,6 +7,7 @@ import Order from './components/Order'
 import { OrdersService, ProductsService } from './Service';
 import { Link } from 'react-router-dom'
 import { mobile } from "./responsive";
+import data from '../src/data/ecommerce-db.json'
 
 const Container = styled.div``;
 
@@ -75,91 +76,94 @@ const TopText = styled.div`
 
 
 const Cart = () => {
-  let [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   //get context
-  let userContext = useContext(UserContext)
+  const userContext = useContext(UserContext)
 
   //loadDataFromDatabase and fetch data from orders array
-  let loadDataFromDatabase = useCallback(async () => {
-    let ordersResponse =
+  const loadDataFromDatabase = useCallback(() => {
 
-      await fetch(`http://localhost:5000/orders?userid=${userContext.user.currentUserId}`,
-        { method: "GET" }
-      );
-    if (ordersResponse.ok) {
-      let ordersResponseBody = await ordersResponse.json();
 
-      //get all products data
-      let productsResponse = await ProductsService.fetchProducts();
-      if (productsResponse.ok) {
-        let productsResponseBody = await productsResponse.json();
 
-        //read orders data
-        ordersResponseBody.forEach((order) => {
-          order.product = ProductsService.getProductsByProductId(productsResponseBody, order.productId);
-        });
-        setOrders(ordersResponseBody);
-      }
-    }
-  }, [userContext.user.currentUserId]);
+    // let ordersResponse =
+    const ordersArray = data.orders;
+    //   await fetch(`http://localhost:5000/orders?userid=${userContext.user.currentUserId}`,
+    //     { method: "GET" }
+    //   );
+    // if (ordersResponse.ok) {
+    //   let ordersResponseBody = await ordersResponse.json();
+
+    //   //get all products data
+    //   let productsResponse = await ProductsService.fetchProducts();
+    //   if (productsResponse.ok) {
+    //     let productsResponseBody = await productsResponse.json();
+    const products = data.products;
+    //     //read orders data
+    ordersArray.forEach((order) => {
+      order.product = ProductsService.getProductsByProductId(products, order.productId);
+    });
+    setOrders(ordersArray);
+
+
+  }, []);
 
 
   useEffect(() => {
     document.title = "Cart - eCommerce";
     loadDataFromDatabase();
   }
-    , [userContext.user.currentUserId, loadDataFromDatabase]);
+    , [loadDataFromDatabase]);
 
-  //buy now click
+  // //buy now click
   let onBuyNowClick = useCallback(
     async (orderId, userId, productId, quantity) => {
-      if (window.confirm("Do you want to place order for this product?")) {
-        let updateOrder = {
-          id: orderId,
-          productId: productId,
-          userId: userId,
-          quantity: quantity,
-          isPaymentCompleted: true,
-        };
+      //     if (window.confirm("Do you want to place order for this product?")) {
+      //       let updateOrder = {
+      //         id: orderId,
+      //         productId: productId,
+      //         userId: userId,
+      //         quantity: quantity,
+      //         isPaymentCompleted: true,
+      //       };
 
-        let orderResponse = await fetch(
-          `http://localhost:5000/orders/${orderId}`,
-          {
-            method: "PUT",
-            body: JSON.stringify(updateOrder),
-            headers: { "Content-type": "application/json" },
-          }
-        );
+      //       //   let orderResponse = await fetch(
+      //       //     `http://localhost:5000/orders/${orderId}`,
+      //       //     {
+      //       //       method: "PUT",
+      //       //       body: JSON.stringify(updateOrder),
+      //       //       headers: { "Content-type": "application/json" },
+      //       //     }
+      //       //   );
 
-        let orderResponseBody = await orderResponse.json();
-        if (orderResponse.ok) {
-          console.log(orderResponseBody);
-          loadDataFromDatabase();
-        }
-      }
+      //       //   let orderResponseBody = await orderResponse.json();
+      //       //   if (orderResponse.ok) {
+      //       //     console.log(orderResponseBody);
+      //       //     loadDataFromDatabase();
+      //       //   }
+      //       // }
     },
     [loadDataFromDatabase]
   );
 
   //When the user clicks on Delete button
   let onDeleteClick = useCallback(
-    async (orderId) => {
-      if (window.confirm("Are you sure to delete this item from cart?")) {
-        let orderResponse = await fetch(
-          `http://localhost:5000/orders/${orderId}`,
-          {
-            method: "DELETE",
-          }
-        );
-        if (orderResponse.ok) {
-          let orderResponseBody = await orderResponse.json();
-          console.log(orderResponseBody);
-          loadDataFromDatabase();
-        }
-      }
-    },
-    [loadDataFromDatabase]
+    // async (orderId) => {
+    //   if (window.confirm("Are you sure to delete this item from cart?")) {
+    //     let orderResponse = await fetch(
+    //       `http://localhost:5000/orders/${orderId}`,
+    //       {
+    //         method: "DELETE",
+    //       }
+    //     );
+    //     if (orderResponse.ok) {
+    //       let orderResponseBody = await orderResponse.json();
+    //       console.log(orderResponseBody);
+    //       loadDataFromDatabase();
+    //     }
+    //   }
+    // },
+    // [loadDataFromDatabase]
   );
 
   return (

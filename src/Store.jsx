@@ -229,33 +229,33 @@ const Store = () => {
 
     //When the user clicks on Add to Cart function
     let onAddToCartClick = (prod) => {
-        (async () => {
-            let newOrder = {
-                userId: userContext.user.currentUserId,
-                productId: prod.id,
-                quantity: 1,
-                isPaymentCompleted: false,
-            };
+        // (async () => {
+        //     let newOrder = {
+        //         userId: userContext.user.currentUserId,
+        //         productId: prod.id,
+        //         quantity: 1,
+        //         isPaymentCompleted: false,
+        //     };
 
-            let orderResponse = await fetch(`http://localhost:5000/orders`, {
-                method: "POST",
-                body: JSON.stringify(newOrder),
-                headers: { "Content-Type": "application/json" },
-            });
+        //     let orderResponse = await fetch(`http://localhost:5000/orders`, {
+        //         method: "POST",
+        //         body: JSON.stringify(newOrder),
+        //         headers: { "Content-Type": "application/json" },
+        //     });
 
-            if (orderResponse.ok) {
-                //isOrdered = true
-                let prods = products.map((p) => {
-                    if (p.id === prod.id) p.isOrdered = true;
-                    return p;
+        //     if (orderResponse.ok) {
+        //         //isOrdered = true
+        //         let prods = products.map((p) => {
+        //             if (p.id === prod.id) p.isOrdered = true;
+        //             return p;
 
-                });
-                setProducts(prods);
-                updateProductsToShow();
-            } else {
-                console.log(orderResponse);
-            }
-        })();
+        //         });
+        //         setProducts(prods);
+        //         updateProductsToShow();
+        //     } else {
+        //         console.log(orderResponse);
+        //     }
+        // })();
     };
     return (
         <Container>
