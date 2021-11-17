@@ -3,8 +3,6 @@ import { ShoppingCartOutlined, Person } from "@material-ui/icons";
 import React, { useContext, useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
-import { UserContext } from "../context/UserContext";
-import { OrdersService, ProductsService } from '../Service';
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -57,52 +55,6 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
-  let [orders, setOrders] = useState([]);
-
-  //get context
-  let userContext = useContext(UserContext)
-
-  //loadFataFromDatabase and fetch data from orders array
-  let loadDataFromDatabase = useCallback(async () => {
-    let ordersResponse =
-
-      await fetch(`http://localhost:5000/orders?userid=${userContext.user.currentUserId}`,
-        { method: "GET" }
-      );
-    if (ordersResponse.ok) {
-      let ordersResponseBody = await ordersResponse.json();
-
-      //get products data
-      let productsResponse = await ProductsService.fetchProducts();
-      if (productsResponse.ok) {
-        let productsResponseBody = await productsResponse.json();
-
-        //read orders data
-        ordersResponseBody.forEach((order) => {
-          order.product = ProductsService.getProductsByProductId(productsResponseBody, order.productId);
-        });
-        setOrders(ordersResponseBody);
-      }
-    }
-  }, [userContext]);
-
-
-  useEffect(() => {
-    document.title = "Cart - eCommerce";
-    loadDataFromDatabase();
-  }
-    , [userContext.user.currentUserId, loadDataFromDatabase]);
-
-  let onLogoutClick = (e) => {
-    e.preventDefault();
-    userContext.setUser({
-      isLoggedIn: false,
-      currentUserId: null,
-      currentUserName: null
-    })
-
-    window.location.hash = '/';
-  }
 
   return (
     <Container>
@@ -116,18 +68,11 @@ const Navbar = () => {
           <Logo>STORE</Logo>
         </Center>
         <Right>
-          {!userContext.user.isLoggedIn ? (<Link to="/register" ><MenuItem>REGISTER</MenuItem></Link>) : ('')}
-          {!userContext.user.isLoggedIn ? (<Link to="/" ><MenuItem>LOG IN</MenuItem></Link>) : ('')}
           <Link to="/cart" ><MenuItem>
-            <Badge badgeContent={OrdersService.getCart(orders).length} color="primary">
+            <Badge color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem></Link>
-          {userContext.user.isLoggedIn ? (<MenuItem><Person />{userContext.user.currentUserName}</MenuItem>
-          ) : ('')}
-          {userContext.user.isLoggedIn ? (<MenuItem
-            onClick={onLogoutClick}
-          >LOGOUT</MenuItem>) : ('')}
         </Right>
       </Wrapper>
     </Container>

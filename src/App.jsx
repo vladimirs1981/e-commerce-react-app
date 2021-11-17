@@ -1,6 +1,3 @@
-import React, { useState } from 'react'
-import Login from './Login'
-import Register from './Register'
 import NoMatchPage from './NoMatchPage'
 import Cart from './Cart'
 import { HashRouter } from 'react-router-dom'
@@ -13,20 +10,20 @@ import Product from './Product'
 
 const App = () => {
 
-    let [user, setUser] = useState({
-        isLoggedIn: false,
-        currentUserId: null,
-        currentUserName: null,
-    });
+    // let [user, setUser] = useState({
+    //     isLoggedIn: false,
+    //     currentUserId: null,
+    //     currentUserName: null,
+    // });
+
+    //value={{ user, setUser }}
 
     return (
-        <UserContext.Provider value={{ user, setUser }} >
+        <UserContext.Provider  >
             <HashRouter>
                 <Navbar />
                 <Switch>
-                    <Route path="/" exact={true} component={Login} />
                     <Route path="/cart" component={Cart} />
-                    <Route path="/register" component={Register} />
                     <Route path="/store" component={Store} />
                     <Route path="/product/:id" component={Product} />
                     <Route path="*" component={NoMatchPage} />

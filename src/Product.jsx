@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useLocation } from "react-router";
 import { useState, useEffect } from 'react'
-import data from '../src/data/ecommerce-db.json'
+import data from './data/ecommerce-db.json'
 import { mobile } from "./responsive";
 
 const Container = styled.div``;
@@ -58,17 +58,8 @@ const Product = () => {
   useEffect(() => {
 
     const product = data.products[productId];
-
-    console.log(product);
-
-    // const getProduct = await fetch("http://localhost:5000/products/" + productId,
-    //   {
-    //     method: "GET"
-    //   });
-    // let getProductBody = await getProduct.json();
-    // if (getProduct.ok) {
     setProduct(product)
-    // }
+
 
   }, [productId])
 

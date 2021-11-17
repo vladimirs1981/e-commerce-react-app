@@ -4,7 +4,7 @@ import { UserContext } from './context/UserContext';
 import { BrandsService, CategoriesService } from "./Service";
 import Product from './components/Product';
 import { Search } from "@material-ui/icons";
-import data from '../src/data/ecommerce-db.json'
+import data from './data/ecommerce-db.json'
 import { mobile } from "./responsive";
 
 const Container = styled.div`
@@ -110,70 +110,31 @@ const Store = () => {
     useEffect(() => {
 
 
-        //get brands from db
-
-        //get brands from db
-
         const brandsArray = data.brands;
 
         brandsArray.forEach((brand) => {
-            console.log(brand)
             brand.isChecked = true;
         })
-
-        // let brandsResponse = await BrandsService.fetchBrands();
-        // let brandsResponseBody = await brandsResponse.json();
-
-
-        // brandsResponseBody.forEach((brand) => {
-
-        //     brand.isChecked = true;
-        // });
-
         setBrands(brandsArray);
-
-
-        //get categories from db
-        // let categoriesResponse = await CategoriesService.fetchCategories();
-        // let categoriesResponseBody = await categoriesResponse.json();
 
         const categoriesArray = data.categories;
 
         categories.forEach((category) => {
-            console.log(category)
             category.isChecked = true;
         })
-
-        // categoriesResponseBody.forEach((category) => {
-        //     category.isChecked = true;
-        // });
         setCategories(categoriesArray);
 
-        //get products from db
-
         const productsArray = data.products;
-
 
         const newList = productsArray.filter((prod) =>
             prod.productName.toLowerCase().includes(search.toLowerCase())
         )
 
-        console.log(newList)
-
-
-        // let productsResponse = await fetch(`http://localhost:5000/products?productName_like=${search}`,
-        //     { method: "GET" }
-        // );
-        // let productsResponseBody = await productsResponse.json();
-        // if (productsResponse.ok) {
         newList.forEach((product) => {
-            //set brand
             product.brand = BrandsService.getBrandByBrandId(
                 brandsArray,
                 product.brandId
             );
-
-            //set category
             product.category = CategoriesService.getCategoryByCategoryId(
                 categoriesArray,
                 product.categoryId
@@ -185,7 +146,6 @@ const Store = () => {
         setProducts(newList);
         setProductsToShow(newList);
         document.title = "Store - eCommerce";
-        // }
 
     }, [search])
 
@@ -229,13 +189,13 @@ const Store = () => {
 
     //When the user clicks on Add to Cart function
     let onAddToCartClick = (prod) => {
-        // (async () => {
-        //     let newOrder = {
-        //         userId: userContext.user.currentUserId,
-        //         productId: prod.id,
-        //         quantity: 1,
-        //         isPaymentCompleted: false,
-        //     };
+
+        let newOrder = {
+            //userId: userContext.user.currentUserId,
+            productId: prod.id,
+            quantity: 1,
+            isPaymentCompleted: false,
+        };
 
         //     let orderResponse = await fetch(`http://localhost:5000/orders`, {
         //         method: "POST",
@@ -243,19 +203,16 @@ const Store = () => {
         //         headers: { "Content-Type": "application/json" },
         //     });
 
-        //     if (orderResponse.ok) {
-        //         //isOrdered = true
-        //         let prods = products.map((p) => {
-        //             if (p.id === prod.id) p.isOrdered = true;
-        //             return p;
+        localStorage.setItem('order', JSON.stringify(newOrder));
+        let prods = products.map((p) => {
+            if (p.id === prod.id) p.isOrdered = true;
+            return p;
 
-        //         });
-        //         setProducts(prods);
-        //         updateProductsToShow();
-        //     } else {
-        //         console.log(orderResponse);
-        //     }
-        // })();
+        });
+        // console.log(order);
+        setProducts(prods);
+        updateProductsToShow();
+
     };
     return (
         <Container>

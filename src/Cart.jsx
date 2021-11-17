@@ -7,7 +7,7 @@ import Order from './components/Order'
 import { OrdersService, ProductsService } from './Service';
 import { Link } from 'react-router-dom'
 import { mobile } from "./responsive";
-import data from '../src/data/ecommerce-db.json'
+import data from './data/ecommerce-db.json'
 
 const Container = styled.div``;
 
@@ -77,43 +77,40 @@ const TopText = styled.div`
 
 const Cart = () => {
   const [orders, setOrders] = useState([]);
-
+  const [cartArray, setCartArray] = useState([]);
   //get context
   const userContext = useContext(UserContext)
 
   //loadDataFromDatabase and fetch data from orders array
-  const loadDataFromDatabase = useCallback(() => {
 
 
 
-    // let ordersResponse =
-    const ordersArray = data.orders;
-    //   await fetch(`http://localhost:5000/orders?userid=${userContext.user.currentUserId}`,
-    //     { method: "GET" }
-    //   );
-    // if (ordersResponse.ok) {
-    //   let ordersResponseBody = await ordersResponse.json();
 
-    //   //get all products data
-    //   let productsResponse = await ProductsService.fetchProducts();
-    //   if (productsResponse.ok) {
-    //     let productsResponseBody = await productsResponse.json();
-    const products = data.products;
-    //     //read orders data
-    ordersArray.forEach((order) => {
-      order.product = ProductsService.getProductsByProductId(products, order.productId);
-    });
-    setOrders(ordersArray);
+  //     //read orders data
+  // ordersArray.forEach((order) => {
+  //   order.product = ProductsService.getProductsByProductId(products, order.productId);
+  // });
+  //setOrders(ordersArray);
+  //console.log(orders);
 
 
-  }, []);
 
 
   useEffect(() => {
+    let newData = localStorage.getItem('order');
+
+    let jsonData = JSON.parse(newData)
+
+
+
+    const product = data.products[jsonData.productId]
+
+    // let ordersResponse =
+    setCartArray(product)
     document.title = "Cart - eCommerce";
-    loadDataFromDatabase();
+
   }
-    , [loadDataFromDatabase]);
+    , []);
 
   // //buy now click
   let onBuyNowClick = useCallback(
@@ -143,7 +140,7 @@ const Cart = () => {
       //       //   }
       //       // }
     },
-    [loadDataFromDatabase]
+    []
   );
 
   //When the user clicks on Delete button
@@ -176,7 +173,7 @@ const Cart = () => {
           <Link to="/store">
             <TopButton>CONTINUE SHOPPING</TopButton>
           </Link>
-          <Refresh onClick={loadDataFromDatabase} ><i className="fa fa-refresh"></i> Refresh</Refresh>
+          <Refresh  ><i className="fa fa-refresh"></i> Refresh</Refresh>
         </Top>
         <TopText>
           <Title>Previous Orders{""}: {OrdersService.getPreviousOrders(orders).length}</Title>
