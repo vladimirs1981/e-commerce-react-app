@@ -24,7 +24,7 @@ const App = () => {
                 <Navbar />
                 <Switch>
                     <Route path="/cart" component={Cart} />
-                    <Route path="/" component={Store} />
+                    <Route path="/" exact component={Store} />
                     <Route path="/product/:id" component={Product} />
                     <Route path="*" component={NoMatchPage} />
                 </Switch>

@@ -170,7 +170,7 @@ const Cart = () => {
           <ShoppingCartOutlined />
         </Badge></Title>
         <Top>
-          <Link to="/store">
+          <Link to="/">
             <TopButton>CONTINUE SHOPPING</TopButton>
           </Link>
           <Refresh  ><i className="fa fa-refresh"></i> Refresh</Refresh>

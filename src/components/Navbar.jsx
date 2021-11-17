@@ -61,7 +61,7 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <MenuItem>
-            <Link to="/store">HOME</Link>
+            <Link to="/">HOME</Link>
           </MenuItem>
         </Left>
         <Center>
