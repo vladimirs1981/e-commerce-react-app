@@ -1,0 +1,239 @@
+{
+  "brands": [
+    {
+      "id": 1,
+      "brandName": "Apple"
+    },
+    {
+      "id": 2,
+      "brandName": "Sony"
+    },
+    {
+      "id": 3,
+      "brandName": "Samsung"
+    },
+    {
+      "id": 4,
+      "brandName": "Carrier"
+    },
+    {
+      "id": 5,
+      "brandName": "Dell"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "categoryName": "Mobile"
+    },
+    {
+      "id": 2,
+      "categoryName": "Electronics"
+    },
+    {
+      "id": 3,
+      "categoryName": "Appliances"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "productName": "Apple iPhone 12",
+      "price": 900,
+      "brandId": 1,
+      "categoryId": 1,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "http://www.ctshop.rs//img/products/2021-05-13/apple-iphone-11-64gb-mhdg3rm-a-zeleni-mobilni-6-1-quot-hexa-core-apple-a13-4gb-64gb-12mpx-12mpx-dual-sim_LoylL_3.jpg"
+    },
+    {
+      "id": 2,
+      "productName": "Apple iPad Pro",
+      "price": 2400,
+      "brandId": 1,
+      "categoryId": 2,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://media.ldlc.com/r1600/ld/products/00/05/82/95/LD0005829500_1.jpg"
+    },
+    {
+      "id": 3,
+      "productName": "Sony Camera",
+      "price": 4500,
+      "brandId": 2,
+      "categoryId": 2,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://fdn.gsmarena.com/imgroot/news/21/10/sony-as74/-1200/gsmarena_001.jpg"
+    },
+    {
+      "id": 4,
+      "productName": "Sony 5.1 Home Theatre",
+      "price": 4500,
+      "brandId": 2,
+      "categoryId": 2,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://www.sony.co.in/image/827f344973272a76fb8533e488ac0878?fmt=pjpeg&bgcolor=FFFFFF&bgc=FFFFFF&wid=2515&hei=1320"
+    },
+    {
+      "id": 5,
+      "productName": "Carrier 2 Ton Air Conditioner",
+      "price": 7780,
+      "brandId": 4,
+      "categoryId": 3,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://www.siglers.com/media/catalog/product/cache/731cad04ad30571bc458f143fb5ad7cb/2/4/24ABC6_1_highest-res.jpg"
+    },
+    {
+      "id": 6,
+      "productName": "Dell 24inch Monitor",
+      "price": 880,
+      "brandId": 5,
+      "categoryId": 2,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://static.tehnomanija.rs/UserFiles/products/2021/004/large/160983.webp"
+    },
+    {
+      "id": 7,
+      "productName": "Sony X5 Mobile Phone",
+      "price": 4848,
+      "brandId": 2,
+      "categoryId": 1,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://cdn.movertix.com/media/catalog/product/cache/image/1200x/s/o/sony-xperia-5-dual-sim-en-negro-de-128gb-y-6gb-ram.jpg"
+    },
+    {
+      "id": 8,
+      "productName": "Samsung M51 Mobile Phone",
+      "price": 2540,
+      "brandId": 3,
+      "categoryId": 1,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://stg-images.samsung.com/is/image/samsung/in-galaxy-m51-m515fz-6gb-sm-m515fzbdins--301211700?scl=1&fmt=png-alpha"
+    },
+    {
+      "id": 9,
+      "productName": "Samsung S21 Mobile Phone",
+      "price": 1300,
+      "brandId": 3,
+      "categoryId": 1,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://www.mytrendyphone.rs/images/Genuine-Samsung-Galaxy-S21-Ultra-Silicone-Cover-EF-PG998-Black-8806090843402-22012021-01-p.jpg"
+    },
+    {
+      "id": 10,
+      "productName": "Apple MacBook Pro",
+      "price": 3000,
+      "brandId": 1,
+      "categoryId": 2,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://istyle.rs/media/wysiwyg/CZ/content/preselection/macbook-pro/mbp14-spacegray.jpeg"
+    },
+    {
+      "id": 11,
+      "productName": "Dell Inspirion Desktop",
+      "price": 1000,
+      "brandId": 5,
+      "categoryId": 2,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://i.dell.com/is/image/DellContent//content/dam/global-site-design/product_images/dell_client_products/desktops/inspiron_desktops/inspiron_3670/mt/pdp/desktop-inspiron-3670mt-gambit-pdp-design-01.jpg?fmt=png-alpha&wid=570&hei=400"
+    },
+    {
+      "id": 12,
+      "productName": "Sony Smart Tv",
+      "price": 2540,
+      "brandId": 2,
+      "categoryId": 2,
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis praesentium est deserunt deleniti iusto illo ex sed, voluptatem odit quod rerum illum odio facilis non, nam modi incidunt corrupti repellat.",
+      "image": "https://static.tehnomanija.rs/UserFiles/products/2020/013/large/152278_(1).webp"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "vlada",
+      "lastName": "Stojan",
+      "username": "dovlas",
+      "email": "scott@test.com",
+      "password": "Scott123"
+    },
+    {
+      "name": "Vladimir",
+      "lastName": "Stojanovic",
+      "username": "st.vladas",
+      "email": "vlada@dev.com",
+      "password": "Vlada123",
+      "id": 2
+    },
+    {
+      "name": "Vladimir",
+      "lastName": "Stojanović ",
+      "username": "stvladas",
+      "email": "test@gmail.com",
+      "password": "Vlada123",
+      "id": 3
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "productId": 1,
+      "quantity": 2,
+      "isPaymentCompleted": true
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "productId": 3,
+      "quantity": 12,
+      "isPaymentCompleted": true
+    },
+    {
+      "id": 3,
+      "productId": 4,
+      "userId": 1,
+      "quantity": 1,
+      "isPaymentCompleted": true
+    },
+    {
+      "id": 6,
+      "productId": 2,
+      "userId": null,
+      "quantity": 1,
+      "isPaymentCompleted": true
+    },
+    {
+      "id": 7,
+      "productId": 4,
+      "userId": null,
+      "quantity": 1,
+      "isPaymentCompleted": true
+    },
+    {
+      "id": 8,
+      "productId": 1,
+      "userId": 1,
+      "quantity": 1,
+      "isPaymentCompleted": true
+    },
+    {
+      "id": 9,
+      "productId": 1,
+      "userId": 1,
+      "quantity": 1,
+      "isPaymentCompleted": true
+    },
+    {
+      "id": 11,
+      "productId": 1,
+      "userId": 1,
+      "quantity": 1,
+      "isPaymentCompleted": true
+    },
+    {
+      "id": 12,
+      "productId": 8,
+      "userId": null,
+      "quantity": 1,
+      "isPaymentCompleted": true
+    }
+  ]
+}
